@@ -1,0 +1,6 @@
+simulation_files	observation_files
+ABCgrid_PapuaVsEAsia.T0=4058-T1=777.tightPriors100k.exponAncIntro.prod.allCorr.nean.power0.39.txt	Nean_papua_noFrancoisUVBaining_easia_wPopMergeStats.obs
+ABCgrid_PapuaVsSAsia.T0=4054-T1=680.tightPriors100k.exponAncIntro.prod.allCorr.nean.power0.39.txt	Nean_papua_noFrancoisUVBaining_sasia_wPopMergeStats.obs
+ABCgrid_EuropeVsEAsia.T0=3792-T1=922.tightPriors100k.exponAncIntro.prod.allCorr.nean.power0.39.txt	Nean_europe_easia_wPopMergeStats.obs
+ABCgrid_PapuaVsEAsia.T0=4058-T1=777.tightPriors100k.exponNonPapIntro.prod.allCorr.deni.power0.29.txt	Deni_papua_noFrancoisUVBaining_easia_wPopMergeStats.obs
+ABCgrid_PapuaVsSAsia.T0=4054-T1=680.tightPriors100k.exponNonPapIntro.prod.allCorr.deni.power0.29.txt	Deni_papua_noFrancoisUVBaining_sasia_wPopMergeStats.obs

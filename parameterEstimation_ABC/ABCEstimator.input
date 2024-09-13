@@ -1,0 +1,70 @@
+//----------------------------------------------------------------------
+//ABCtoolbox input file
+//----------------------------------------------------------------------
+
+//	To estimate parameters
+task estimate
+
+//	Define estimation method
+//estimationType standard
+
+//	Observed data
+obsName Nean_papua_noFrancoisUVBaining_easia_wPopMergeStats.obs
+
+//	Simulated data
+simName ABCgrid_PapuaVsEAsia.T0=4058-T1=777.tightPriors100k.exponAncIntro.prod.allCorr.nean.power0.39.txt
+
+//	Specifies the columns containing the parameters of interest in the file containing the summary statistics of the simulated data, i.e. its assigned values are numbers indicating the position of the respective columns in the file.
+params 3-7,9
+
+//	Specify the output file prefix
+outputPrefix ABC_est_Nean_papua_noFrancoisUVBaining_easia_wPopMergeStats_
+
+//	Rejection settings
+
+//	Specifies the number of simulations in the file containing the summary statistics of the simulated data to be taken into account.
+maxReadSims 10000000
+
+//	Specifies the number of simulations closest to the observed data to be selected from the simulations.
+numRetained 1000
+
+//	Calculates the tukey depth P-value. This calculates the Tukey depth (the minimum number of sample points on one side of a hyperplane through the point, i.e. a measure of how centered a point is in an overall cloud of points) of the observed data and contrasts it with the Tukey depth of the distribution of all retained simulation points (hence argument should be equal or less than numRetained), to produce a p-value. If the observed point is close to the center of the retained simulations, we expect that most 
+//tukeyPValue 500
+
+//	Calculates the marginal density P-value. Similar in approach to the above, this tag calculates the P-value for the marginal density of the observed datapoint by doing so for the observed datapoint and the retained simulations (distribution)
+//marDensPValue 500
+
+//	If the parameter writeRetained is defined and set to 1, ABCestimator writes two files: one containing the parameter and statistics of the retained simulations and one with the smoothed parameter distribution of the retained simula- tions (see
+writeRetained 1
+
+//	To remove highly correlated statistics
+//maxCorSSFinder 0.95
+pruneCorrelatedStats
+
+//	Specifies whether (1) or not (0) the statistics are standardized before the distance is calculated.
+standardizeStats 1
+
+//	Posterior estimation settings
+//	Since ABCestimator standardizes the parameters internally to the range [0, 1] diracPeakWidth, the same diracPeakWidth value is used for all parameters. Too small values of diracPeakWidth will result in wiggly posterior curves, too large values might unduly smear out the curves. The best advice is to run the calculations with several choices for diracPeakWidth. The choice of diracPeakWidth depends on the number of retained simulations: the larger the number of retained parameter values, the sharper the smaller diracPeakWidth can be cho- sen in order to still get a rather smooth result. If the parameter diracPeakWidth is not defined, ABCestimator uses as value of 0.001, unless the parameter numRetained is defined. In this case ABCestimator sets σk = 1/N, where N is the number of simulations to retain, as proposed by Leuenberger and Wegmann (2009). Update: it seems that ABCtoolbox always defaults to 0.001, regardless of if numRetained is defined or not.
+diracPeakWidth 0.005
+
+//	ABCestimator calculates the density of the marginal posteriors on a number of equally spaced points along the range of every parameter. The number of such points is specified with the parameter posteriorDensityPoints with default value 100.
+posteriorDensityPoints 100
+
+//	Should you wish to estimate joint posteriors
+//jointPosteriors log_m_high_low,log_m_low_high
+//jointPosteriors I_prop_x,I_prop_a
+//jointPosteriors I_prop_x,I_prop_b
+//jointPosteriors I_prop_a,I_Tb
+
+// While we don't need the output of jointPosteriorDensityPoints since we're outputting the jointSamplesMCMC, this nonetheless needs to be set to a minimum of 2!
+//jointPosteriorDensityPoints 33
+
+//	For cross-validation of parameter estimates. The pseudo-observed data can either be chosen among the retained simulations (retainedValidation) or among all simulations (randomValidation). The number of simulations to be used as pseudo-observed data is assigned to either one of the argument-tags.
+randomValidation 1000
+//retainedValidation 1000
+
+//output settings
+logFile ABC_est_Nean_papua_noFrancoisUVBaining_easia_wPopMergeStats.log
+
+verbose
